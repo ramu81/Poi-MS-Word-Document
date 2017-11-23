@@ -7,4 +7,7 @@ public interface TestCaseConstants {
 	String TEST_SCENARIOS = "Test Scenarios";
 	String SCENARIO_ID = "Scenario id";
 	String PROPERTIES_FILE = "testcase.properties";
+	String TESTING_DOC = "Testing Documentation";
+	String TESTING_DOC_HEADER = "---";
+	String TESTING_CON ="-";
 }

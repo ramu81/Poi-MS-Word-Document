@@ -64,7 +64,8 @@ public class TestCaseDocument {
 				File file = fileObject.getFileList().get(0);
 				BasicFileAttributes attr = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
 				Date creationDate = new Date(attr.creationTime().to(TimeUnit.MILLISECONDS));
-				run.setText(" "+DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(creationDate));
+				run.setText(
+						" " + DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(creationDate));
 			}
 			run.setFontFamily(font);
 			run.setFontSize(10);
@@ -116,7 +117,7 @@ public class TestCaseDocument {
 	static void populateFileMap(Map<String, FileObject> map, String fileName) {
 		File imagesDir = new File(fileName);
 		for (File file : imagesDir.listFiles()) {
-			String[] fileNames = file.getName().split("-");
+			String[] fileNames = file.getName().split(TestCaseConstants.TESTING_CON);
 			if (fileNames.length > 1) {
 				String tempFileName = fileNames[0].trim();
 				if (map.containsKey(tempFileName)) {
@@ -147,7 +148,7 @@ public class TestCaseDocument {
 		run.setText(text);
 		run.setBold(isBold);
 		run.setFontFamily(font);
-		if ("Testing Documentation".equals(text) || text.startsWith("---"))
+		if (TestCaseConstants.TESTING_DOC.equals(text) || text.startsWith(TestCaseConstants.TESTING_DOC_HEADER))
 			run.setFontSize(14);
 		else
 			run.setFontSize(10);
@@ -183,7 +184,7 @@ public class TestCaseDocument {
 			XWPFRun run = paragraph.createRun();
 			run.addBreak();
 			run.addPicture(new FileInputStream(fileName), XWPFDocument.PICTURE_TYPE_JPEG, fileObject.getFileName(),
-					Units.toEMU(200), Units.toEMU(200));
+					Units.toEMU(500), Units.toEMU(500));
 			run.addBreak();
 		}
 
